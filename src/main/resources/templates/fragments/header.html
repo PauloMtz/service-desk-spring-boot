@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+  <header th:fragment="cabecalho">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <span id="nav-bar">
+        <a class="navbar-brand" th:href="@{/}">
+          <img th:src="@{/img/menu-hamburger.png}" />
+          SPRING BOOT
+        </a>
+      </span>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" th:href="@{/}">Home</a>
+          </li>
+        </ul>
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" 
+            id="cadastro" data-bs-toggle="dropdown" aria-expanded="false">
+            Cadastro
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="cadastro">
+            <li><a class="dropdown-item" th:href="@{/cliente/cadastrar}">Novo Cliente</a></li>
+          </ul>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" 
+            id="consultas" data-bs-toggle="dropdown" aria-expanded="false">
+            Consultas
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="consultas">
+            <li><a class="dropdown-item" th:href="@{/cliente/listar}">Clientes</a></li>
+          </ul>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" 
+            id="operacoes" data-bs-toggle="dropdown" aria-expanded="false">
+            Operações
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="operacoes">
+            <li><a class="dropdown-item" th:href="@{/}">Receber Equipamento</a></li>
+          </ul>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" 
+            id="relatorios" data-bs-toggle="dropdown" aria-expanded="false">
+            Relatórios
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="relatorios">
+            <li><a class="dropdown-item" th:href="@{/}">Equipamentos Recebidos</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+      <span>
+        <a class="btn btn-link" th:href="@{/login}">Entrar</a>
+      </span>
+    </nav>
+  </header>
+</body>
+
+</html>

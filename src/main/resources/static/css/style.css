@@ -1,0 +1,80 @@
+* {
+    font-size: small;
+}
+.container {
+    min-height: 75vh;
+    padding-top: 20px;
+}
+.container h2 {
+    border-bottom: 1px solid #ccc;
+}
+.navbar {
+    border-bottom: 1px solid #ccc;
+    padding-left: 20px;
+}
+.navbar {
+    padding-right: 70px;
+}
+.dropdown .btn {
+    border: none;
+}
+.dropdown .btn:hover {
+    background-color: #f8f9fa;
+    color: gray;
+    border: none;
+}
+#nav-bar {
+    display: inline-flex;
+}
+#nav-bar a {
+    padding-left: 5px;
+    font-size: 24px;
+}
+a.btn {
+    text-decoration: none;
+}
+.row {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+label {
+    margin-bottom: 5px;
+}
+.btn {
+    min-width: 100px;
+}
+.pesquisa {
+    float: right;
+    width: 400px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.table {
+    margin-top: 30px;
+    border-bottom: 1px solid #ccc;
+}
+#adiciona-usuario {
+    float: right;
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+#form-opt {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}
+#ultima-div {
+    margin-bottom: 30px;
+}
+.erro-existe {
+    font-size: small;
+    color: red;
+}
+#opt {
+    text-align: center;
+}
+footer .row {
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    padding-left: 40%;
+}
