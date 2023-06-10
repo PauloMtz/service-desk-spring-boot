@@ -13,6 +13,11 @@ public class HomeController {
         return "home"; // template
     }
 
+    @RequestMapping("/home")
+    public String home(Model model) {
+        return "redirect:/"; // rota
+    }
+
     @RequestMapping("/login")
     public String login(Model model) {
         return "login"; // template

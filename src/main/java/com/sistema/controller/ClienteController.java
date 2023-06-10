@@ -60,7 +60,7 @@ public class ClienteController {
 
         service.salvar(cliente);
         attr.addFlashAttribute("success", "Registro inserido com sucesso.");
-        return "redirect:/"; // rota
+        return "redirect:/cliente/listar"; // rota
     }
 
     @GetMapping("/listar")
