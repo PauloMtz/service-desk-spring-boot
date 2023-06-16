@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+
+<body>
+    <div class="container" layout:fragment="corpo">
+        <h2>Recebimentos</h2>
+
+        <div class="pesquisa">
+            <form th:action="@{/operacao/buscar}">
+                <div class="input-group">
+                    <input type="search" class="form-control rounded" placeholder="Pesquisar por cliente..."
+                        aria-label="Search" aria-describedby="search-addon" th:name="nome" />
+                    <input type="submit" class="btn btn-outline-primary" value="Buscar" />
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-12">
+            <table class="table table-striped" th:if="${!recebimentos.isEmpty()}">
+                <div th:replace="fragments/alerta"></div>
+
+                <thead>
+                    <tr>
+                        <th scope="col">Equipamento</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Data Rec</th>
+                        <th colspan="3" id="opt"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="rec : ${recebimentos}">
+                        <td th:text="${rec.equipamento}"></td>
+                        <td th:text="${rec.marca}"></td>
+                        <td th:text="${rec.modelo}"></td>
+                        <td th:text="${rec.cliente.nome}"></td>
+                        <td th:text="${#temporals.format(rec.dataRecebimento, 'dd/MM/yyyy')}"></td>
+                        <td><a class="btn btn-outline-primary btn-sm"
+                                th:href="@{/operacao/detalhes/{id}(id=${rec.id})}">Detalhes</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <span th:if="${recebimentos.isEmpty()}">
+                <h5>Nenhum registro</h5>
+            </span>
+            <div th:replace="fragments/paginacao"></div>
+        </div>
+    </div>
+</body>
+</html>

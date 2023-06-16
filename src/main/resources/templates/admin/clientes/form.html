@@ -9,7 +9,7 @@
             <div th:replace="fragments/alerta"></div>
 
             <div class="row">
-                <div class="form-group col-6">
+                <div class="form-group col-md-6">
                     <label>Nome</label>
                     <input type="text" class="form-control" placeholder="Nome..." th:field="*{nome}" autofocus
                         th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'" />
@@ -19,7 +19,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6">
+                <div class="form-group col-md-6">
                     <label>E-mail</label>
                     <input type="text" class="form-control" placeholder="E-mail..." th:field="*{email}"
                         th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'" />
@@ -33,7 +33,7 @@
             </div>
 
             <div class="row">
-                <div class="form-group col-3">
+                <div class="form-group col-md-3">
                     <label>CPF</label>
                     <input type="text" class="form-control" placeholder="CPF..." maxlength="11"
                         th:field="*{cpf}" th:classappend="${#fields.hasErrors('cpf')} ? 'is-invalid'"
@@ -46,7 +46,7 @@
                     <span class="erro-existe" th:if="${cpfExiste}" th:text="${cpfExiste}"></span>
                 </div>
 
-                <div class="form-group col-3">
+                <div class="form-group col-md-3">
                     <label>Data Nascimento</label>
                     <input type="date" class="form-control" th:field="*{dataNascimento}"
                         th:classappend="${#fields.hasErrors('dataNascimento')} ? 'is-invalid'" />
@@ -56,7 +56,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-3">
+                <div class="form-group col-md-3">
                     <label>Telefone</label>
                     <input type="text" class="form-control" placeholder="Telefone..."
                         th:field="*{telefone}" th:classappend="${#fields.hasErrors('telefone')} ? 'is-invalid'" />
@@ -66,7 +66,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-3">
+                <div class="form-group col-md-3">
                     <p>Sexo</p>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="masc" value="M" 
@@ -86,7 +86,7 @@
             </div>
 
             <div class="row">
-                <div class="form-group col-3">
+                <div class="form-group col-md-3">
                     <label for="cep">Cep</label>
                     <input type="text" class="form-control" id="cep" placeholder="Cep..." maxlength="9"
                         th:field="*{endereco.cep}" th:classappend="${#fields.hasErrors('endereco.cep')} ? 'is-invalid'" />
@@ -96,7 +96,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-6">
+                <div class="form-group col-md-6">
                     <label for="rua">Logradouro</label>
                     <input type="text" class="form-control" id="rua" placeholder="Logradouro..."
                         th:field="*{endereco.logradouro}" th:classappend="${#fields.hasErrors('endereco.logradouro')} ? 'is-invalid'" />
@@ -106,7 +106,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-3">
+                <div class="form-group col-md-3">
                     <label for="complemento">Complemento</label>
                     <input type="text" class="form-control" id="complemento" placeholder="Complemento..."
                         th:field="*{endereco.complemento}" th:classappend="${#fields.hasErrors('endereco.complemento')} ? 'is-invalid'" />
@@ -118,7 +118,7 @@
             </div>
 
             <div class="row">
-                <div class="form-group col-4">
+                <div class="form-group col-md-4">
                     <label for="bairro">Bairro</label>
                     <input type="text" class="form-control" id="bairro" placeholder="Bairro..." maxlength="9"
                         th:field="*{endereco.bairro}" th:classappend="${#fields.hasErrors('endereco.bairro')} ? 'is-invalid'" />
@@ -128,7 +128,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-4">
+                <div class="form-group col-md-4">
                     <label for="cidade">Cidade</label>
                     <input type="text" class="form-control" id="cidade" placeholder="Cidade..."
                         th:field="*{endereco.cidade}" th:classappend="${#fields.hasErrors('endereco.cidade')} ? 'is-invalid'" />
@@ -138,7 +138,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-4">
+                <div class="form-group col-md-4">
                     <label for="uf">Estado</label>
                     <input type="text" class="form-control" id="uf" placeholder="Estado..."
                         th:field="*{endereco.uf}" th:classappend="${#fields.hasErrors('endereco.uf')} ? 'is-invalid'" />
@@ -150,7 +150,7 @@
             </div>
 
             <div class="row">
-                <div class="form-group col-4">
+                <div class="form-group col-md-4">
                     <input type="hidden" id="id" th:field="*{id}" />
                     <button type="submit" class="btn btn-outline-primary">Salvar</button>
                     <a class="btn btn-outline-warning" th:href="@{/cliente/listar}">Cancelar</a>

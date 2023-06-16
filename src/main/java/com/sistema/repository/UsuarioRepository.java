@@ -6,6 +6,5 @@ import com.sistema.domain.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     
-    // verifica se já tem cadastro
     Usuario findByEmail(String email);
 }

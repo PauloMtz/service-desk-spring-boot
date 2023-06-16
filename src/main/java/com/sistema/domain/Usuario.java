@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -20,7 +21,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 @Getter
 @Setter
 @Entity
@@ -48,6 +51,11 @@ public class Usuario implements UserDetails {
         inverseJoinColumns = @JoinColumn(name = "perfil_id")
     )
     private List<Perfil> perfis;
+
+    // um usuário recebe vários equipamentos
+    // mapeado por usuario lá em Recebimento
+    @OneToMany(mappedBy = "usuario")
+    private List<Recebimento> recebimentos;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

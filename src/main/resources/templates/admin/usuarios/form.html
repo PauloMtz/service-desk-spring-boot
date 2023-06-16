@@ -8,7 +8,7 @@
             <div th:replace="fragments/alerta"></div>
             
             <div class="row">
-                <div class="form-group col-4">
+                <div class="form-group col-md-4">
                     <label for="nome">Nome</label>
                     <input type="text" class="form-control" id="nome" placeholder="Nome..."
                         th:field="*{nome}" autofocus 
@@ -19,7 +19,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group col-4">
+                  <div class="form-group col-md-4">
                     <label for="email">E-mail</label>
                     <input type="text" class="form-control" id="email" placeholder="E-mail..."
                         th:field="*{email}" 
@@ -34,7 +34,7 @@
             </div>
 
             <div class="row">
-                <div class="form-group col-4">
+                <div class="form-group col-md-12">
                     <input type="hidden" id="id" th:field="*{id}"/>
                     <button type="submit" class="btn btn-outline-primary">Salvar</button>
                     <a class="btn btn-outline-warning" th:href="@{/usuario/listar}">Cancelar</a>

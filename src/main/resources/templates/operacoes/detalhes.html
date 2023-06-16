@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+    layout:decorate="~{layout}">
+<body>
+	<div class="container" layout:fragment="corpo">
+        <h2 class="tabela col-md-6">Detalhes</h2>
+        <form th:object="${recebimento}" method="POST">
+            <div th:replace="fragments/alerta"></div>
+            
+            <div class="tabela col-md-6">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Equipamento</th>
+                        <td th:text="${recebimento.equipamento}"></td>
+                    </tr>
+                    <tr>
+                        <th>Marca</th>
+                        <td th:text="${recebimento.marca}"></td>
+                    </tr>
+                    <tr>
+                        <th>Modelo</th>
+                        <td th:text="${recebimento.modelo}"></td>
+                    </tr>
+                    <tr>
+                        <th>Número de Série</th>
+                        <td th:text="${recebimento.numSerie}"></td>
+                    </tr>
+                    <tr>
+                        <th>Cliente</th>
+                        <td th:text="${recebimento.cliente.nome}"></td>
+                    </tr>
+                    <tr>
+                        <th>Contato</th>
+                        <td th:text="${recebimento.cliente.telefone}"></td>
+                    </tr>
+                    <tr>
+                        <th>E-mail</th>
+                        <td th:text="${recebimento.cliente.email}"></td>
+                    </tr>
+                    <tr>
+                        <th>Data de Entrada</th>
+                        <td th:text="${#temporals.format(recebimento.dataRecebimento, 'dd/MM/yyyy')}"></td>
+                    </tr>
+                    <tr>
+                        <th>Observação</th>
+                        <td th:text="${recebimento.observacao}"></td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td th:text="${recebimento.status.descricao}"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="tabela col-md-6">
+                <div class="form-group col-md-12">
+                    <a class="btn btn-outline-warning" th:href="@{/operacao/listar}">Voltar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

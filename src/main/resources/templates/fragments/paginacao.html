@@ -14,7 +14,7 @@
         <!-- 2.1 se página corrente for maior que 1, exibir botões primeiro e anterior -->
         <li class="page-item">
             <a class="page-link" th:if="${currentPage > 1}" title="Primeiro"
-                th:href="@{${url}} + '1'"><img th:src="@{/img/first.png}"></a>
+                th:href="@{${url}} + '1' + ${pag}"><img th:src="@{/img/first.png}"></a>
             <li class="page-item disabled" th:unless="${currentPage > 1}">
                 <span class="page-link"><img th:src="@{/img/first.png}"></span>
             </li>
@@ -49,7 +49,7 @@
 
         <li class="page-item">
             <a class="page-link" th:if="${currentPage < totalPages}" title="Último"
-                th:href="@{${url} + ${totalPages}}"><img th:src="@{/img/last.png}"></a>
+                th:href="@{${url} + ${totalPages} + ${pag}}"><img th:src="@{/img/last.png}"></a>
             
             <li class="page-item disabled" th:unless="${currentPage < totalPages}">
                 <span class="page-link"><img th:src="@{/img/last.png}"></span>
@@ -68,7 +68,7 @@
             <!-- 3.1.1 se página corrente for maior que 1, exibir botões primeiro e anterior -->
             <li class="page-item">
                 <a class="page-link" th:if="${currentPage > 1}" title="Primeiro"
-                    th:href="@{${url}} + '1'"><img th:src="@{/img/first.png}"></a>
+                    th:href="@{${url}} + '1' + ${pag}"><img th:src="@{/img/first.png}"></a>
                 <li class="page-item disabled" th:unless="${currentPage > 1}">
                     <span class="page-link"><img th:src="@{/img/first.png}"></span>
                 </li>
@@ -113,7 +113,7 @@
 
             <li class="page-item">
                 <a class="page-link" th:if="${currentPage < totalPages}" title="Último"
-                    th:href="@{${url} + ${totalPages}}"><img th:src="@{/img/last.png}"></a>
+                    th:href="@{${url} + ${totalPages} + ${pag}}"><img th:src="@{/img/last.png}"></a>
                 
                 <li class="page-item disabled" th:unless="${currentPage < totalPages}">
                     <span class="page-link"><img th:src="@{/img/last.png}"></span>
@@ -126,7 +126,7 @@
             <!-- 3.2.1 se página corrente for maior que 1, exibir botões primeiro e anterior -->
             <li class="page-item">
                 <a class="page-link" th:if="${currentPage > 1}" title="Primeiro"
-                    th:href="@{${url}} + '1'"><img th:src="@{/img/first.png}"></a>
+                    th:href="@{${url}} + '1' + ${pag}"><img th:src="@{/img/first.png}"></a>
                 <li class="page-item disabled" th:unless="${currentPage > 1}">
                     <span class="page-link"><img th:src="@{/img/first.png}"></span>
                 </li>
@@ -176,7 +176,7 @@
 
             <li class="page-item">
                 <a class="page-link" th:if="${currentPage < totalPages}" title="Último"
-                    th:href="@{${url} + ${totalPages}}"><img th:src="@{/img/last.png}"></a>
+                    th:href="@{${url} + ${totalPages} + ${pag}}"><img th:src="@{/img/last.png}"></a>
                 
                 <li class="page-item disabled" th:unless="${currentPage < totalPages}">
                     <span class="page-link"><img th:src="@{/img/last.png}"></span>
@@ -189,7 +189,7 @@
             <!-- 3.3.1 se página corrente for maior que 1, exibir botões primeiro e anterior -->
             <li class="page-item">
                 <a class="page-link" th:if="${currentPage > 1}" title="Primeiro"
-                    th:href="@{${url}} + '1'"><img th:src="@{/img/first.png}"></a>
+                    th:href="@{${url}} + '1' + ${pag}"><img th:src="@{/img/first.png}"></a>
                 <li class="page-item disabled" th:unless="${currentPage > 1}">
                     <span class="page-link"><img th:src="@{/img/first.png}"></span>
                 </li>
@@ -231,7 +231,7 @@
 
             <li class="page-item">
                 <a class="page-link" th:if="${currentPage < totalPages}" title="Último"
-                    th:href="@{${url} + ${totalPages}}"><img th:src="@{/img/last.png}"></a>
+                    th:href="@{${url} + ${totalPages} + ${pag}}"><img th:src="@{/img/last.png}"></a>
                 
                 <li class="page-item disabled" th:unless="${currentPage < totalPages}">
                     <span class="page-link"><img th:src="@{/img/last.png}"></span>

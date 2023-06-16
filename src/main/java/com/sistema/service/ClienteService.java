@@ -1,5 +1,6 @@
 package com.sistema.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,11 @@ public class ClienteService {
         var clienteEncontrado = buscarPorId(id);
         repository.delete(clienteEncontrado);
     }
+
+    public List<Cliente> lista() {
+        List<Cliente> clientes = repository.findAll(Sort.by(Sort.Direction.ASC, "nome"));
+		return clientes;
+	}
 
     public Page<Cliente> listarTodos(int numPage) {
         int size = 5;

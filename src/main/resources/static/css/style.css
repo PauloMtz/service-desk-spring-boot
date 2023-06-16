@@ -2,7 +2,7 @@
     font-size: small;
 }
 .container {
-    min-height: 75vh;
+    min-height: 70vh;
     padding-top: 20px;
 }
 .container h2 {
@@ -30,6 +30,9 @@
     padding-left: 5px;
     font-size: 24px;
 }
+.form-group {
+    margin-bottom: 10px;
+}
 a.btn {
     text-decoration: none;
 }
@@ -45,13 +48,16 @@ label {
 }
 .pesquisa {
     float: right;
-    width: 400px;
+    width: 380px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 .table {
     margin-top: 30px;
     border-bottom: 1px solid #ccc;
+}
+.tabela {
+    margin: auto;
 }
 #adiciona-usuario {
     float: right;
@@ -77,4 +83,7 @@ footer .row {
     border-top: 1px solid #ccc;
     padding-top: 10px;
     padding-left: 40%;
+}
+#password {
+    margin-bottom: 10px;
 }

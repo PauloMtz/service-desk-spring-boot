@@ -14,7 +14,7 @@ import com.sistema.repository.PerfilRepository;
 import com.sistema.repository.UsuarioRepository;
 
 @Component
-public class CriaUsuarioUser implements CommandLineRunner {
+public class CriaUsuarioTecn implements CommandLineRunner {
 
     @Autowired
     private UsuarioRepository repository;
@@ -25,7 +25,7 @@ public class CriaUsuarioUser implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        String email = "user@mail.com";
+        /*String email = "tecn@mail.com";
 
         Usuario usuario = repository.findByEmail(email);
 
@@ -37,7 +37,7 @@ public class CriaUsuarioUser implements CommandLineRunner {
             usuario.setEmail(email);
             usuario.setAtivo(true);
             // cria perfil
-            Perfil perfil = perfilRepository.findByPerfil("USER");
+            Perfil perfil = perfilRepository.findByPerfil("TECN");
             List<Perfil> perfis = new ArrayList<Perfil>();
             perfis.add(perfil);
             usuario.setPerfis(perfis);
@@ -46,6 +46,6 @@ public class CriaUsuarioUser implements CommandLineRunner {
             usuario.setPassword(encrypt);
             repository.save(usuario);
             System.out.println("*** Usuário criado: e-mail " + usuario.getEmail() + " e senha 123");
-        }
+        }*/
     }
 }

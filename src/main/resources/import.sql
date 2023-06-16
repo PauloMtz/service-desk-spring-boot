@@ -63,3 +63,28 @@ insert into "clientes" ("cpf", "data_nascimento", "email", "endereco_id", "id", 
 insert into "clientes" ("cpf", "data_nascimento", "email", "endereco_id", "id", "nome", "sexo", "telefone") values ('67288327000', '2001-10-03', 'ryan.goncalves@construtor.com.br', '1030', '1030', 'Ryan Renato Gonçalves', 'M', '(31) 98479-4002');
 insert into "clientes" ("cpf", "data_nascimento", "email", "endereco_id", "id", "nome", "sexo", "telefone") values ('05866915960', '1995-02-23', 'luiz.moraes77@teadit.com.br', '1031', '1031', 'Luiz Tomás Moraes', 'M', '(51) 99608-2111');
 insert into "clientes" ("cpf", "data_nascimento", "email", "endereco_id", "id", "nome", "sexo", "telefone") values ('14182180739', '2002-01-22', 'henry.assis84@danzarin.com.br', '1032', '1032', 'Henry Erick Assis', 'M', '(96) 99720-5549');
+
+insert into "usuarios" ("ativo", "email", "id", "nome", "password") values (true, 'admin@mail.com', '1001', 'Maria Rita de Souza', '$2a$10$fCryhyWH8UZeU5IY8t.q1OTWQs83nNnobeHhQRbH8TxgVAVMUtDW.');
+insert into "usuarios" ("ativo", "email", "id", "nome", "password") values (true, 'atend@mail.com', '1002', 'Ribamar de Sousa e Silva', '$2a$10$A/RNukPU0TRnobAQ2mKIBObtx.ZQZRvL.V2WIV3Om2Cd0MQ0H2Lay');
+insert into "usuarios" ("ativo", "email", "id", "nome", "password") values (true, 'tecn@mail.com', '1003', 'José Maria da Silva', '$2a$10$yseK7Z9ZbZW2Gc2sV1ek7.Msh4TrQUwXU6Bbx2YrfCJLxT4XvyePe');
+
+insert into "perfil" ("id", "perfil") values ('1', 'ADMIN');
+insert into "perfil" ("id", "perfil") values ('2', 'TECN');
+insert into "perfil" ("id", "perfil") values ('3', 'ATEND');
+
+insert into "usuario_perfil" ("perfil_id", "usuario_id") values ('1', '1001');
+insert into "usuario_perfil" ("perfil_id", "usuario_id") values ('3', '1002');
+insert into "usuario_perfil" ("perfil_id", "usuario_id") values ('2', '1003');
+
+insert into "recebimentos" ("cliente_id", "data_recebimento", "equipamento", "id", "marca", "modelo", "num_serie", "observacao", "status", "usuario_id") values ('1024', '2023-06-11 10:00:54', 'Impressora XPTO', '1001', 'XPTO', 'XPTO Serie X', 'xxx0-00115-21.1', 'Cabo de alimentação danificado', 'RECEBE_EQUIPAMENTO', '1002');
+insert into "recebimentos" ("cliente_id", "data_recebimento", "equipamento", "id", "marca", "modelo", "num_serie", "observacao", "status", "usuario_id") values ('1028', '2023-06-11 10:05:54', 'Scanner XPTO', '1002', 'XPTO', 'XPTO Serie X1', 'xxx0-00135-21.1', 'Sem cabo de alimentação', 'RECEBE_EQUIPAMENTO', '1002');
+insert into "recebimentos" ("cliente_id", "data_recebimento", "equipamento", "id", "marca", "modelo", "num_serie", "observacao", "status", "usuario_id") values ('1014', '2023-06-11 10:10:54', 'Filmadora XPTO', '1003', 'XPTO', 'XPTO Serie X0', 'xxx0-00115-22.1', 'Lente danificada', 'RECEBE_EQUIPAMENTO', '1002');
+insert into "recebimentos" ("cliente_id", "data_recebimento", "equipamento", "id", "marca", "modelo", "num_serie", "observacao", "status", "usuario_id") values ('1001', '2023-06-11 10:15:54', 'Celular XPTO', '1004', 'XPTO', 'XPTO Serie X', 'xxx0-00315-21.1', 'Sem carregador', 'RECEBE_EQUIPAMENTO', '1002');
+insert into "recebimentos" ("cliente_id", "data_recebimento", "equipamento", "id", "marca", "modelo", "num_serie", "observacao", "status", "usuario_id") values ('1019', '2023-06-11 10:20:54', 'Notebook XPTO', '1005', 'XPTO', 'XPTO Serie X', 'xxx0-00415-21.1', 'Sem observação', 'RECEBE_EQUIPAMENTO', '1002');
+insert into "recebimentos" ("cliente_id", "data_recebimento", "equipamento", "id", "marca", "modelo", "num_serie", "observacao", "status", "usuario_id") values ('1025', '2023-06-11 10:25:54', 'Micro computador XPTO', '1006', 'XPTO', 'XPTO Serie X', 'xxx0-00515-21.1', 'Teste', 'RECEBE_EQUIPAMENTO', '1002');
+insert into "recebimentos" ("cliente_id", "data_recebimento", "equipamento", "id", "marca", "modelo", "num_serie", "observacao", "status", "usuario_id") values ('1004', '2023-06-11 10:32:54', 'Câmera XPTO', '1007', 'XPTO', 'XPTO Serie X', 'xxx0-00615-21.1', 'Dono imbecil', 'RECEBE_EQUIPAMENTO', '1002');
+insert into "recebimentos" ("cliente_id", "data_recebimento", "equipamento", "id", "marca", "modelo", "num_serie", "observacao", "status", "usuario_id") values ('1011', '2023-06-11 10:37:54', 'Impressora XPTO', '1008', 'XPTO', 'XPTO Serie X', 'xxx0-00115-41.1', 'Cara de lata', 'RECEBE_EQUIPAMENTO', '1002');
+insert into "recebimentos" ("cliente_id", "data_recebimento", "equipamento", "id", "marca", "modelo", "num_serie", "observacao", "status", "usuario_id") values ('1017', '2023-06-11 10:42:54', 'Monitor XPTO', '1009', 'XPTO', 'XPTO Serie X', 'xxx0-00115-51.1', 'Cachorro fez cocô na tela', 'RECEBE_EQUIPAMENTO', '1002');
+insert into "recebimentos" ("cliente_id", "data_recebimento", "equipamento", "id", "marca", "modelo", "num_serie", "observacao", "status", "usuario_id") values ('1015', '2023-06-11 10:47:54', 'Video XPTO', '1010', 'XPTO', 'XPTO Serie X', 'xxx0-00115-61.1', 'Nada a acrescentar', 'RECEBE_EQUIPAMENTO', '1002');
+insert into "recebimentos" ("cliente_id", "data_recebimento", "equipamento", "id", "marca", "modelo", "num_serie", "observacao", "status", "usuario_id") values ('1032', '2023-06-11 10:52:54', 'Audio XPTO', '1011', 'XPTO', 'XPTO Serie X', 'xxx0-00115-71.1', 'Viche Maria', 'RECEBE_EQUIPAMENTO', '1002');
+insert into "recebimentos" ("cliente_id", "data_recebimento", "equipamento", "id", "marca", "modelo", "num_serie", "observacao", "status", "usuario_id") values ('1009', '2023-06-11 10:56:54', 'Conector XPTO', '1012', 'XPTO', 'XPTO Serie X', 'xxx0-00115-81.1', 'Arre égua', 'RECEBE_EQUIPAMENTO', '1002');

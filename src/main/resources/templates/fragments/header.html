@@ -3,79 +3,71 @@
 <body>
   <header th:fragment="cabecalho">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <span id="nav-bar">
+      <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/}">
           <img th:src="@{/img/menu-hamburger.png}" />
-          SPRING BOOT
+          SERVICE DESK
         </a>
-      </span>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" th:href="@{/}">Home</a>
-          </li>
-        </ul>
-
-        <div class="dropdown" sec:authorize="isAuthenticated()">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="cadastro"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            Cadastro
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="cadastro">
-            <li><a class="dropdown-item" th:href="@{/cliente/cadastrar}">Cliente</a></li>
-            <li><a class="dropdown-item" th:href="@{/usuario/novo}">Usuário</a></li>
-          </ul>
-        </div>
-
-        <div class="dropdown" sec:authorize="isAuthenticated()">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="consultas"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            Consultas
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="consultas">
-            <li><a class="dropdown-item" th:href="@{/cliente/listar}">Clientes</a></li>
-            <li><a class="dropdown-item" th:href="@{/usuario/listar}">Usuários</a></li>
-          </ul>
-        </div>
-
-        <div class="dropdown" sec:authorize="isAuthenticated()">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="operacoes"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            Operações
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="operacoes">
-            <li><a class="dropdown-item" th:href="@{/}">Receber Equipamento</a></li>
-          </ul>
-        </div>
-
-        <div class="dropdown" sec:authorize="isAuthenticated()">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="relatorios"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            Relatórios
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="relatorios">
-            <li><a class="dropdown-item" th:href="@{/}">Equipamentos Recebidos</a></li>
-          </ul>
-        </div>
-      </div>
-
-      </div>
-      <span sec:authorize="!isAuthenticated()">
-        <a class="btn btn-link" th:href="@{/login}">Entrar</a>
-      </span>
-      <div class="dropdown" sec:authorize="isAuthenticated()">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="relatorios"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          <span th:text="${#authentication.name}"></span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
-        <ul class="dropdown-menu" aria-labelledby="relatorios">
-          <li>
-            <a class="dropdown-item" th:href="@{/usuario/alterasenha/{email}(email=${#authentication.name})}">Alterar
-              senha
-            </a>
-          </li>
-          <li><a class="dropdown-item" th:href="@{/logout}">Sair</a></li>
-        </ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+            </li>
+            <li class="nav-item dropdown" th:if="${ #authorization.expression('hasAuthority(''ADMIN'')')}">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Cadastros
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" th:href="@{/cliente/cadastrar}">Cliente</a></li>
+                <li><a class="dropdown-item" th:href="@{/usuario/novo}">Usuário</a></li>
+                <!--<li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+              </ul>
+            </li>
+            <li class="nav-item dropdown" th:if="${ #authorization.expression('hasAuthority(''ADMIN'')')}">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Consultas
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" th:href="@{/cliente/listar}">Clientes</a></li>
+                <li><a class="dropdown-item" th:href="@{/usuario/listar}">Usuários</a></li>
+                <!--<li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+              </ul>
+            </li>
+            <li class="nav-item dropdown" th:if="${ #authorization.expression('hasAuthority(''ATEND'')')}">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Operacional
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" th:href="@{/operacao/receber}">Receber Equipamento</a></li>
+                <li><a class="dropdown-item" th:href="@{/operacao/listar}">Equipamentos Recebidos</a></li>
+                <!--<li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+              </ul>
+            </li>
+          </ul>
+          <span sec:authorize="!isAuthenticated()">
+            <a class="btn btn-link" th:href="@{/login}">Entrar</a>
+          </span>
+          <div class="dropdown" sec:authorize="isAuthenticated()">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="relatorios"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <span th:text="${#authentication.name}"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="relatorios">
+              <li>
+                <a class="dropdown-item" th:href="@{/usuario/alterasenha/{email}(email=${#authentication.name})}">Alterar
+                  senha
+                </a>
+              </li>
+              <li><a class="dropdown-item" th:href="@{/logout}">Sair</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </nav>
   </header>

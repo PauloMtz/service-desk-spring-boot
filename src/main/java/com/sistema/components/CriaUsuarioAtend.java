@@ -25,7 +25,7 @@ public class CriaUsuarioAtend implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        String email = "atend@mail.com";
+        /*String email = "atend@mail.com";
 
         Usuario usuario = repository.findByEmail(email);
 
@@ -46,6 +46,6 @@ public class CriaUsuarioAtend implements CommandLineRunner {
             usuario.setPassword(encrypt);
             repository.save(usuario);
             System.out.println("*** Usuário criado: e-mail " + usuario.getEmail() + " e senha 123");
-        }
+        }*/
     }
 }

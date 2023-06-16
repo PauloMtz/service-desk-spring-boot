@@ -18,7 +18,8 @@ public class WebSecurityConfig {
             .authorizeHttpRequests(authorizeRequestsCustomizer -> authorizeRequestsCustomizer
                 .antMatchers("/img/**", "/js/**", "/css/**").permitAll()
                 .antMatchers("/", "/home", "/usuario/alterasenha/**").permitAll()
-                .antMatchers("/cliente/**", "/usuario/**").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers("/cliente/**", "/usuario/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/operacao/**").hasAnyAuthority("ATEND")
                 .anyRequest().authenticated())
             .formLogin(formLoginCustomizer -> formLoginCustomizer
                 .loginPage("/login")

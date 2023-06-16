@@ -1,38 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" 
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset='utf-8'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-  <title>Srping Boot</title>
+  <title>Service Desk</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <link rel="stylesheet" type="text/css" href="css/style-login.css">
+  <!-- Bootstrap core CSS -->
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+  <link rel='stylesheet' type='text/css' media='screen' th:href='@{/css/style.css}'>
   <!-- favicon -->
   <link rel="icon" th:href="@{/img/favicon.png}" />
 </head>
+
 <body>
-	<div class="container">
-		<h2>Login</h2>
-		<form class="form" method="post" th:action="@{/login}">
-			<div class="erro" th:if="${loginErro != null}">
-				<span th:text="${loginErro}"></span>
-			</div>
-			<div class="form-group">
-				<label>Login</label>
-				<input type="text" name="username" />
-			</div>
-			<div class="form-group">
-				<label>Senha</label>
-				<input type="password" id="password" name="password" />
-				<span><input type="checkbox" onclick="showPass()"> Mostrar Senha</span>
-			</div>
-			<div class="form-group">
-				<input type="submit" name="enviar" value="Entrar" />
-			</div>
-		</form>
-	</div>
-	<script type="text/javascript">
+  <div class="container col-md-6">
+    <h2>Login</h2>
+    <form th:object="${usuario}" method="POST" th:action="@{/login}">
+      <div th:replace="fragments/alerta"></div>
+
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label for="email">E-mail</label>
+          <input type="text" class="form-control" name="username" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label for="email">Senha</label>
+          <input type="password" class="form-control"id="password" name="password" />
+          <span><input type="checkbox" onclick="showPass()"> Mostrar Senha</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-12">
+          <input type="submit" name="enviar" value="Entrar"class="btn btn-outline-primary" />
+        </div>
+      </div>
+    </form>
+  </div>
+  <script type="text/javascript">
 		function showPass() {
 		  var campo = document.getElementById("password");
 		  if (campo.type === "password") {

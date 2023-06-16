@@ -16,7 +16,7 @@ public class CriaPerfis implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         
-        String[] perfis = {"ADMIN", "USER", "ATEND"};
+        /*String[] perfis = {"ADMIN", "TECN", "ATEND"};
 
         for (String perfilString : perfis) {
             Perfil perfil = repository.findByPerfil(perfilString);
@@ -27,6 +27,6 @@ public class CriaPerfis implements CommandLineRunner {
             }
         }
 
-        System.out.println("*** Perfis criados");
+        System.out.println("*** Perfis criados");*/
     } 
 }

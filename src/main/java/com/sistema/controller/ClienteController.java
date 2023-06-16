@@ -64,7 +64,7 @@ public class ClienteController {
     }
 
     @GetMapping("/listar")
-    public String listar(Model model, String nome) {
+    public String listar(Model model) {
         return listaPaginada(model, 1);
     }
 

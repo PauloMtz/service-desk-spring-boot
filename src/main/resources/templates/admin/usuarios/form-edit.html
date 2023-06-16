@@ -9,7 +9,7 @@
             <div th:replace="fragments/alerta"></div>
             
             <div class="row">
-                <div class="form-group col-4">
+                <div class="form-group col-md-4">
                     <label>Nome</label>
                     <input type="text" class="form-control" th:field="*{nome}" 
                         th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'" />
@@ -19,7 +19,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group col-4">
+                  <div class="form-group col-md-4">
                     <label>E-mail</label>
                     <input type="text" class="form-control" th:field="*{email}" 
                         th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'" />
@@ -37,7 +37,7 @@
                 perfis é da classe usuario
             -->
             <div class="row col-8" id="form-opt">
-                <div class="form-group col-6">
+                <div class="form-group col-md-6">
                     <label>Tipo de Usuário</label>
                     <th:block th:each="pp : ${listaPerfis}"><!-- itera a lista e mostra checkbox marcado -->
                         <div class="form-check" th:if="${#lists.contains(usuario.perfis, pp)}">
@@ -54,7 +54,7 @@
                     <span class="erro-existe" th:if="${erroPapel}" th:text="${erroPapel}"></span>
                 </div>
 
-                <div class="form-group col-6">
+                <div class="form-group col-md-6">
                     <label>Status</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" id="radio1" 
@@ -70,7 +70,7 @@
             </div>
 
             <div class="row">
-                <div class="form-group col-4">
+                <div class="form-group col-md-12">
                     <button type="submit" class="btn btn-outline-primary">Salvar</button>
                     <a class="btn btn-outline-warning" th:href="@{/usuario/listar}">Cancelar</a>
                 </div>
