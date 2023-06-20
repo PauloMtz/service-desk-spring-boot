@@ -120,9 +120,19 @@ public class ClienteController {
 
     @GetMapping("/excluir/{id}")
     public String excluir(@PathVariable Long id, RedirectAttributes attr) {
-        service.excluir(id);
-        attr.addFlashAttribute("success", "Registro excluído com sucesso.");
-        return "redirect:/cliente/listar"; // rota
+        try {
+            if (service.existsByRecebimentoId(id)) {
+                attr.addFlashAttribute("error", "Esse registro não pode ser excluído");
+                return "redirect:/cliente/listar"; // rota
+            }
+
+            service.excluir(id);
+            attr.addFlashAttribute("success", "Registro excluído com sucesso.");
+            return "redirect:/cliente/listar"; // rota
+        } catch (Exception e) {
+            attr.addFlashAttribute("error", "Esse registro não pode ser excluído");
+            return "redirect:/cliente/listar"; // rota
+        }
     }
 
     @GetMapping("/editar/{id}")

@@ -13,6 +13,10 @@ public interface RecebimentoRepository extends JpaRepository<Recebimento, Long> 
 
     // join tables
     @Query("SELECT r FROM Recebimento r JOIN r.cliente c "
-        + "WHERE UPPER(c.nome) LIKE CONCAT('%', UPPER(?1), '%')")
+        + "WHERE UPPER(c.nome) LIKE CONCAT('%', UPPER(?1), '%') "
+        + "AND status = 'RECEBE_EQUIPAMENTO'")
     Page<Recebimento> findByCliente(String nome, Pageable pageable);
+
+    @Query("SELECT r FROM Recebimento r WHERE status = 'RECEBE_EQUIPAMENTO'")
+    Page<Recebimento> listarTodos(Pageable pageable);
 }

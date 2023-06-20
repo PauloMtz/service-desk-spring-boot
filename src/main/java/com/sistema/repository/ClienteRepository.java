@@ -13,6 +13,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     Cliente findByCpf(String cpf);
     Cliente findByEmail(String email);
 
+    Boolean existsByRecebimentoId(Long id);
+
     @Query("FROM Cliente f WHERE UPPER(f.nome) LIKE CONCAT('%', UPPER(:nome), '%')")
     Page<Cliente> findByNome(@Param("nome") String nome, Pageable pageable);
 }

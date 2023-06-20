@@ -38,7 +38,7 @@
                 <li><a class="dropdown-item" href="#">Something else here</a></li>-->
               </ul>
             </li>
-            <li class="nav-item dropdown" th:if="${ #authorization.expression('hasAuthority(''ATEND'')')}">
+            <li class="nav-item dropdown" th:if="${ #authorization.expression('hasAnyAuthority(''ATEND'', ''TECN'')')}">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Operacional
               </a>

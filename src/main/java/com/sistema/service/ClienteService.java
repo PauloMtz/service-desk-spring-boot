@@ -24,8 +24,12 @@ public class ClienteService {
     }
 
     public void excluir(Long id) {
-        var clienteEncontrado = buscarPorId(id);
-        repository.delete(clienteEncontrado);
+        try {
+            var clienteEncontrado = buscarPorId(id);
+            repository.delete(clienteEncontrado);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("O registro não pode ser removido");
+        }
     }
 
     public List<Cliente> lista() {
@@ -63,5 +67,9 @@ public class ClienteService {
     public Cliente buscarPorEmail(String email) {
         Cliente cliente = repository.findByEmail(email);
         return cliente;
+    }
+
+    public Boolean existsByRecebimentoId(Long recebimentoId) {
+        return repository.existsByRecebimentoId(recebimentoId);
     }
 }
