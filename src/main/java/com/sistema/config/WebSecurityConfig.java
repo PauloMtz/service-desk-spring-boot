@@ -20,6 +20,7 @@ public class WebSecurityConfig {
                 .antMatchers("/", "/home", "/usuario/alterasenha/**").permitAll()
                 .antMatchers("/cliente/**", "/usuario/**").hasAuthority("ADMIN")
                 .antMatchers("/operacao/**").hasAnyAuthority("ATEND", "TECN")
+                .antMatchers("/atendimento/**").hasAuthority("TECN")
                 .anyRequest().authenticated())
             .formLogin(formLoginCustomizer -> formLoginCustomizer
                 .loginPage("/login")

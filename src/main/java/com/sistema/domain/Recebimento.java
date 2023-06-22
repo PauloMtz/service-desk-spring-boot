@@ -60,4 +60,7 @@ public class Recebimento {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    @OneToOne(mappedBy = "recebimento")
+    private Atendimento atendimento;
 }

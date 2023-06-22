@@ -18,5 +18,5 @@ public interface RecebimentoRepository extends JpaRepository<Recebimento, Long> 
     Page<Recebimento> findByCliente(String nome, Pageable pageable);
 
     @Query("SELECT r FROM Recebimento r WHERE status = 'RECEBE_EQUIPAMENTO'")
-    Page<Recebimento> listarTodos(Pageable pageable);
+    Page<Recebimento> listarRecebimentos(Pageable pageable);
 }

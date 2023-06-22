@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+
+<body>
+    <div class="container" layout:fragment="corpo">
+        <h2>Ordens de Serviços</h2>
+
+        <div class="col-md-12">
+            <table class="table table-striped" th:if="${!ordenServicos.isEmpty()}">
+                <div th:replace="fragments/alerta"></div>
+
+                <thead>
+                    <tr>
+                        <th scope="col">Rec ID</th>
+                        <th scope="col">Equipamento</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Número OS.</th>
+                        <th scope="col">Data OS.</th>
+                        <th colspan="2" id="opt"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="os : ${ordenServicos}">
+                        <td th:text="${os.recebimento.id}"></td>
+                        <td th:text="${os.recebimento.equipamento}"></td>
+                        <td th:text="${os.recebimento.marca}"></td>
+                        <td th:text="${os.recebimento.modelo}"></td>
+                        <td><a th:href="@{/atendimento/detalhes/{id}(id=${os.id})}"
+                                title="Detalhes da OS">[[${os.numeroOs}]]</a></td>
+                        <td th:text="${#temporals.format(os.dataOrdemServico, 'dd/MM/yyyy')}"></td>
+                        <td><a class="btn btn-outline-primary btn-sm"
+                                th:href="@{/atendimento/atender_os/{id}(id=${os.id})}">Atender OS.</a></td>
+                        <td><a class="btn btn-outline-danger btn-sm">Cancelar Atendimento</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <span th:if="${ordenServicos.isEmpty()}">
+                <h5>Nenhum registro</h5>
+            </span>
+            <div th:replace="fragments/paginacao"></div>
+        </div>
+    </div>
+</body>
+</html>

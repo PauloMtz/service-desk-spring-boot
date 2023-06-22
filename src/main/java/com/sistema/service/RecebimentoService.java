@@ -25,7 +25,7 @@ public class RecebimentoService {
     public Page<Recebimento> listarTodos(int numPage) {
         int size = 5;
         Pageable pageable = PageRequest.of(numPage -1, size, Sort.by("dataRecebimento"));
-        return repository.listarTodos(pageable);
+        return repository.listarRecebimentos(pageable);
     }
 
     public Page<Recebimento> buscarPorCliente(String nome, int numPage) {

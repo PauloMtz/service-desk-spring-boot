@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+    layout:decorate="~{layout}">
+<body>
+	<div class="container" layout:fragment="corpo">
+        <h2 class="tabela col-md-6">Detalhes</h2>
+        <form th:object="${os}" method="POST">
+            <div th:replace="fragments/alerta"></div>
+            
+            <div class="tabela col-md-6">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Equipamento</th>
+                        <td th:text="${os.recebimento.equipamento}"></td>
+                    </tr>
+                    <tr>
+                        <th>Marca</th>
+                        <td th:text="${os.recebimento.marca}"></td>
+                    </tr>
+                    <tr>
+                        <th>Modelo</th>
+                        <td th:text="${os.recebimento.modelo}"></td>
+                    </tr>
+                    <tr>
+                        <th>Número de Série</th>
+                        <td th:text="${os.recebimento.numSerie}"></td>
+                    </tr>
+                    <tr>
+                        <th>Cliente</th>
+                        <td th:text="${os.recebimento.cliente.nome}"></td>
+                    </tr>
+                    <tr>
+                        <th>Contato</th>
+                        <td th:text="${os.recebimento.cliente.telefone}"></td>
+                    </tr>
+                    <tr>
+                        <th>Número da OS.</th>
+                        <td th:text="${os.numeroOs}"></td>
+                    </tr>
+                    <tr>
+                        <th>Data da OS.</th>
+                        <td th:text="${#temporals.format(os.dataOrdemServico, 'dd/MM/yyyy')}"></td>
+                    </tr>
+                    <tr>
+                        <th>Descrição</th>
+                        <td th:text="${os.descricao}"></td>
+                    </tr>
+                    <tr>
+                        <th>Observação</th>
+                        <td th:text="${os.observacao}"></td>
+                    </tr>
+                    <tr>
+                        <th>Observação</th>
+                        <td th:text="${#numbers.formatCurrency(os.valor)}"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="tabela col-md-6">
+                <div class="form-group col-md-12">
+                    <a class="btn btn-outline-warning" th:href="@{/atendimento/listar}">Voltar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
