@@ -24,27 +24,19 @@
                         <th scope="col">Nome</th>
                         <th scope="col">E-mail</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Telefone</th>
-                        <th scope="col">Nascimento</th>
-                        <th scope="col">Sexo</th>
-                        <th colspan="3" id="opt"></th>
+                        <th id="opt"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="cli : ${clientes}">
-                        <td th:text="${cli.nome}"></td>
+                        <td><a th:href="@{/cliente/detalhes/{id}(id=${cli.id})}"
+                                title="Detalhes do cliente">[[${cli.nome}]]</a></td>
                         <td th:text="${cli.email}"></td>
                         <td th:text="${cli.endereco.uf}"></td>
-                        <td th:text="${cli.telefone}"></td>
-                        <td th:text="${#temporals.format(cli.dataNascimento, 'dd/MM/yyyy')}"></td>
-                        <td>
-                            <span th:text="${cli.sexo == 'M'} ? 'Masc' : 'Fem'"></span>
-                        </td>
                         <td>
                             <a class="btn btn-outline-primary btn-sm"
                                 th:href="@{/cliente/editar/{id}(id=${cli.id})}">Atualizar</a>
-                        </td>
-                        <td>
+
                             <a class="btn btn-outline-danger btn-sm"
                                 th:href="@{/cliente/excluir/{id}(id=${cli.id})}"
                                 th:data-confirm-delete="|Confirma exclusão de ${cli.nome}?|"

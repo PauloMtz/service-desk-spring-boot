@@ -16,26 +16,24 @@
             <li class="nav-item">
               <a class="nav-link" aria-current="page" th:href="@{/}">Início</a>
             </li>
-            <li class="nav-item dropdown" th:if="${ #authorization.expression('hasAuthority(''ADMIN'')')}">
+            <li class="nav-item dropdown" th:if="${ #authorization.expression('hasAnyAuthority(''ADMIN'', ''ATEND'')')}">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Cadastros
+                Clientes
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" th:href="@{/cliente/cadastrar}">Cliente</a></li>
-                <li><a class="dropdown-item" th:href="@{/usuario/novo}">Usuário</a></li>
+                <li><a class="dropdown-item" th:href="@{/cliente/cadastrar}">Novo</a></li>
+                <li><a class="dropdown-item" th:href="@{/cliente/listar}">Consulta</a></li>
                 <!--<li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>-->
               </ul>
             </li>
             <li class="nav-item dropdown" th:if="${ #authorization.expression('hasAuthority(''ADMIN'')')}">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Consultas
+                Usuários
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" th:href="@{/cliente/listar}">Clientes</a></li>
-                <li><a class="dropdown-item" th:href="@{/usuario/listar}">Usuários</a></li>
-                <!--<li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+                <li><a class="dropdown-item" th:href="@{/usuario/novo}">Novo</a></li>
+                <li><a class="dropdown-item" th:href="@{/usuario/listar}">Consulta</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown" th:if="${ #authorization.expression('hasAnyAuthority(''ATEND'', ''TECN'')')}">
@@ -45,8 +43,7 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" th:href="@{/operacao/receber}">Receber Equipamento</a></li>
                 <li><a class="dropdown-item" th:href="@{/operacao/listar}">Equipamentos Recebidos</a></li>
-                <!--<li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+                <li><a class="dropdown-item" th:href="@{/operacao/devolver}">Liberados para entrega</a></li>
               </ul>
             </li>
             <li class="nav-item" th:if="${ #authorization.expression('hasAuthority(''TECN'')')}">

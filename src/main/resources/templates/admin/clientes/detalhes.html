@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+    layout:decorate="~{layout}">
+<body>
+	<div class="container" layout:fragment="corpo">
+        <h2 class="tabela col-md-6">Detalhes</h2>
+        <form th:object="${cliente}" method="POST">
+            <div th:replace="fragments/alerta"></div>
+            
+            <div class="tabela col-md-6">
+                <table class="table">
+                    <tr>
+                        <th>Nome</th>
+                        <td th:text="${cliente.nome}"></td>
+                    </tr>
+                    <tr>
+                        <th>Data de Nascimento</th>
+                        <td th:text="${#temporals.format(cliente.dataNascimento, 'dd/MM/yyyy')}"></td>
+                    </tr>
+                    <tr>
+                        <th>CPF</th>
+                        <td th:text="${cliente.cpf}"></td>
+                    </tr>
+                    <tr>
+                        <th>Sexo</th>
+                        <td th:text="${cliente.sexo == 'M'} ? 'Masculino' : 'Feminino'"></td>
+                    </tr>
+                    <tr>
+                        <th>E-mail</th>
+                        <td th:text="${cliente.email}"></td>
+                    </tr>
+                    <tr>
+                        <th>Telefone</th>
+                        <td th:text="${cliente.telefone}"></td>
+                    </tr>
+                    <tr>
+                        <th>Endereço</th>
+                        <td th:text="${cliente.endereco.logradouro}"></td>
+                    </tr>
+                    <tr>
+                        <th>Bairro</th>
+                        <td th:text="${cliente.endereco.bairro}"></td>
+                    </tr>
+                    <tr>
+                        <th>Cidade</th>
+                        <td th:text="${cliente.endereco.cidade}"></td>
+                    </tr>
+                    <tr>
+                        <th>Estado</th>
+                        <td th:text="${cliente.endereco.uf}"></td>
+                    </tr>
+                    <tr>
+                        <th>CEP</th>
+                        <td th:text="${cliente.endereco.cep}"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="tabela col-md-6">
+                <div class="form-group col-md-12">
+                    <a class="btn btn-outline-warning" th:href="@{/cliente/listar}">Voltar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

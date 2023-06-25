@@ -22,12 +22,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sistema.domain.Atendimento;
+import com.sistema.domain.Devolucao;
 import com.sistema.domain.OrdemServico;
 import com.sistema.domain.Recebimento;
 import com.sistema.domain.Usuario;
 import com.sistema.enums.Status;
 import com.sistema.repository.UsuarioRepository;
+import com.sistema.service.AtendimentoService;
 import com.sistema.service.ClienteService;
+import com.sistema.service.DevolucaoService;
 import com.sistema.service.OrdemServicoService;
 import com.sistema.service.RecebimentoService;
 
@@ -43,6 +47,12 @@ public class OperacionalController {
 
     @Autowired
     private OrdemServicoService ordemServicoService;
+
+    @Autowired
+    private AtendimentoService atendimentoService;
+
+    @Autowired
+    private DevolucaoService devolucaoService;
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -196,5 +206,91 @@ public class OperacionalController {
         // redireciona para página inicial com mensagem de sucesso
         attr.addFlashAttribute("success", "Ordem de serviço registrada com sucesso");
         return "redirect:/"; // rota
+    }
+
+    // devolução de equipamento
+    @GetMapping("/devolver")
+    public String devolver(Model model) {
+        return listaPaginadaDevolucao(model, 1);
+    }
+
+    @GetMapping("/devolver/{pageNumber}")
+    public String listaPaginadaDevolucao(Model model,
+        @PathVariable(value = "pageNumber") int currentPage) {
+
+        Page<Atendimento> page = atendimentoService.listarTodos(currentPage);
+        List<Atendimento> atendimentos = page.getContent();
+        int totalPages = page.getTotalPages();
+        long totalItems = page.getTotalElements();
+
+        String url = "/operacao/devolver/";
+        String pag = "";
+
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("totalItems", totalItems);
+        model.addAttribute("url", url);
+        model.addAttribute("pag", pag);
+        model.addAttribute("atendimentos", atendimentos);
+
+        return "operacoes/liberados"; // template
+    }
+
+    @GetMapping("/liberados-detalhes/{id}")
+    public String detalhesLiberados(@PathVariable Long id, Model model, RedirectAttributes attr) {
+        Atendimento registroEncontrado = atendimentoService.buscarPorId(id);
+
+        if (registroEncontrado == null) {
+            attr.addFlashAttribute("error", "Registro não encontrado");
+            return "redirect:/operacao/devolver"; // rota
+        }
+
+        model.addAttribute("atendimento", registroEncontrado);
+        return "operacoes/liberados-detalhes"; // template
+    }
+
+    @GetMapping("/liberado-devolver/{id}")
+    public String devolverLiberado(@PathVariable Long id, Model model, RedirectAttributes attr) {
+        Recebimento registroEncontrado = recebimentoService.buscarPorId(id);
+
+        if (registroEncontrado == null) {
+            attr.addFlashAttribute("error", "Registro não encontrado");
+            return "redirect:/operacao/devolver"; // rota
+        }
+
+        Devolucao devolucao = new Devolucao();
+        devolucao.setRecebimento(registroEncontrado);
+
+        model.addAttribute("devolucao", devolucao);
+        return "operacoes/liberado-devolver"; // template
+    }
+
+    @PostMapping("/liberado-devolver/{id}")
+    public String devolverLiberado(@Valid Devolucao devolucao, BindingResult result,
+            Model model, RedirectAttributes attr, @PathVariable("id") Long id) 
+            throws IOException {
+
+        if (result.hasErrors()) {
+            return "operacoes/liberado-devolver"; // template
+        }
+
+        // pega id do recebimento
+        Recebimento recebimento = recebimentoService.buscarPorId(id);
+
+        // pega o usuário logado e salva os dados da OS
+        Authentication usuarioLogado = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = usuarioRepository.findByEmail(usuarioLogado.getName());
+        devolucao.setUsuario(usuario);
+        devolucao.setRecebimento(recebimento);
+        devolucao.setDataDevolucao(LocalDateTime.now());
+        devolucaoService.salvar(devolucao);
+
+        // atualiza status do recebimento
+        recebimento.setStatus(Status.DEVOLVE_EQUIPAMENTO);
+        recebimentoService.salvar(recebimento);
+
+        // redireciona para página inicial com mensagem de sucesso
+        attr.addFlashAttribute("success", "Devolução registrada com sucesso");
+        return "redirect:/operacao/devolver"; // rota
     }
 }

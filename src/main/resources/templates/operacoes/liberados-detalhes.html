@@ -4,61 +4,61 @@
 <body>
 	<div class="container" layout:fragment="corpo">
         <h2 class="tabela col-md-6">Detalhes</h2>
-        <form th:object="${os}" method="POST">
+        <form th:object="${atendimento}" method="POST">
             <div th:replace="fragments/alerta"></div>
             
             <div class="tabela col-md-6">
                 <table class="table">
                     <tr>
                         <th>Equipamento</th>
-                        <td th:text="${os.recebimento.equipamento}"></td>
+                        <td th:text="${atendimento.recebimento.equipamento}"></td>
                     </tr>
                     <tr>
                         <th>Marca</th>
-                        <td th:text="${os.recebimento.marca}"></td>
+                        <td th:text="${atendimento.recebimento.marca}"></td>
                     </tr>
                     <tr>
                         <th>Modelo</th>
-                        <td th:text="${os.recebimento.modelo}"></td>
+                        <td th:text="${atendimento.recebimento.modelo}"></td>
                     </tr>
                     <tr>
                         <th>Número de Série</th>
-                        <td th:text="${os.recebimento.numSerie}"></td>
+                        <td th:text="${atendimento.recebimento.numSerie}"></td>
                     </tr>
                     <tr>
                         <th>Cliente</th>
-                        <td th:text="${os.recebimento.cliente.nome}"></td>
+                        <td th:text="${atendimento.recebimento.cliente.nome}"></td>
                     </tr>
                     <tr>
                         <th>Contato</th>
-                        <td th:text="${os.recebimento.cliente.telefone}"></td>
+                        <td th:text="${atendimento.recebimento.cliente.telefone}"></td>
                     </tr>
                     <tr>
-                        <th>Número da OS.</th>
-                        <td th:text="${os.numeroOs}"></td>
-                    </tr>
-                    <tr>
-                        <th>Data da OS.</th>
-                        <td th:text="${#temporals.format(os.dataOrdemServico, 'dd/MM/yyyy')}"></td>
+                        <th>Data do atendimento</th>
+                        <td th:text="${#temporals.format(atendimento.dataAtendimento, 'dd/MM/yyyy')}"></td>
                     </tr>
                     <tr>
                         <th>Descrição</th>
-                        <td th:text="${os.descricao}"></td>
+                        <td th:text="${atendimento.descricao}"></td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td th:text="${atendimento.recebimento.status.descricao}"></td>
                     </tr>
                     <tr>
                         <th>Observação</th>
-                        <td th:text="${os.observacao}"></td>
+                        <td th:text="${atendimento.observacao}"></td>
                     </tr>
                     <tr>
-                        <th>Valor</th>
-                        <td th:text="${#numbers.formatCurrency(os.valor)}"></td>
+                        <th>Valor informado na OS</th>
+                        <td th:text="|R$ ${{atendimento.ordemServico.valor}}|"></td>
                     </tr>
                 </table>
             </div>
 
             <div class="tabela col-md-6">
                 <div class="form-group col-md-12">
-                    <a class="btn btn-outline-warning" th:href="@{/atendimento/listar}">Voltar</a>
+                    <a class="btn btn-outline-warning" th:href="@{/operacao/devolver}">Voltar</a>
                 </div>
             </div>
         </form>

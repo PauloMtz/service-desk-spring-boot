@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+
+<body>
+    <div class="container" layout:fragment="corpo">
+        <h2>Liberados para entrega</h2>
+
+        <div class="col-md-12">
+            <table class="table table-striped" th:if="${!atendimentos.isEmpty()}">
+                <div th:replace="fragments/alerta"></div>
+
+                <thead>
+                    <tr>
+                        <th scope="col">Equipamento</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Núm. Série</th>
+                        <th scope="col">Cliente</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="atd : ${atendimentos}">
+                        <td th:text="${atd.recebimento.equipamento}"></td>
+                        <td th:text="${atd.recebimento.marca}"></td>
+                        <td th:text="${atd.recebimento.numSerie}"></td>
+                        <td th:text="${atd.recebimento.cliente.nome}"></td>
+                        <td>
+                            <a class="btn btn-outline-warning btn-sm"
+                                th:href="@{/operacao/liberados-detalhes/{id}(id=${atd.id})}">Detalhes
+                            </a>
+                            <a th:href="@{/operacao/liberado-devolver/{id}(id=${atd.recebimento.id})}"
+                                class="btn btn-outline-primary btn-sm">Devolver
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <span th:if="${atendimentos.isEmpty()}">
+                <h5>Nenhum registro</h5>
+            </span>
+            <div th:replace="fragments/paginacao"></div>
+        </div>
+    </div>
+</body>
+</html>

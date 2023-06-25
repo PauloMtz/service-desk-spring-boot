@@ -174,4 +174,17 @@ public class ClienteController {
         attr.addFlashAttribute("success", "Registro atualizado com sucesso.");
         return "redirect:/cliente/listar"; // rota
     }
+
+    @GetMapping("/detalhes/{id}")
+    public String detalhes(@PathVariable Long id, Model model, RedirectAttributes attr) {
+        Cliente registroEncontrado = service.buscarPorId(id);
+
+        if (registroEncontrado == null) {
+            attr.addFlashAttribute("error", "Registro não encontrado");
+            return "redirect:/cliente/listar"; // rota
+        }
+
+        model.addAttribute("cliente", registroEncontrado);
+        return "admin/clientes/detalhes"; // template
+    }
 }

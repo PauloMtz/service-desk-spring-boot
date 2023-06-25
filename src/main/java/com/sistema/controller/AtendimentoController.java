@@ -54,7 +54,7 @@ public class AtendimentoController {
     public String listaPaginada(Model model,
         @PathVariable(value = "pageNumber") int currentPage) {
 
-        Page<OrdemServico> page = atendimentoService.listarTodos(currentPage);
+        Page<OrdemServico> page = ordemServicoService.listarTodos(currentPage);
         List<OrdemServico> ordenServicos = page.getContent();
         int totalPages = page.getTotalPages();
         long totalItems = page.getTotalElements();

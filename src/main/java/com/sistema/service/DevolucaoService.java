@@ -9,27 +9,27 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.sistema.domain.Atendimento;
-import com.sistema.repository.AtendimentoRepository;
+import com.sistema.domain.Devolucao;
+import com.sistema.repository.DevolucaoRepository;
 
 @Service
-public class AtendimentoService {
+public class DevolucaoService {
 
     @Autowired
-    private AtendimentoRepository repository;
+    private DevolucaoRepository repository;
 
-    public void salvar(Atendimento atendimento) {
-        repository.save(atendimento);
+    public void salvar(Devolucao devolucao) {
+        repository.save(devolucao);
     }
 
-    public Page<Atendimento> listarTodos(int numPage) {
+    public Page<Devolucao> listarTodos(int numPage) {
         int size = 5;
         Pageable pageable = PageRequest.of(numPage -1, size, Sort.by("dataAtendimento"));
-        return repository.listarAtendimentos(pageable);
+        return repository.listarDevolucoes(pageable);
     }
 
-    public Atendimento buscarPorId(Long id) {
-        Optional<Atendimento> registroEncontrado = repository.findById(id);
+    public Devolucao buscarPorId(Long id) {
+        Optional<Devolucao> registroEncontrado = repository.findById(id);
 
         if (registroEncontrado.isPresent()) {
             return registroEncontrado.get();
