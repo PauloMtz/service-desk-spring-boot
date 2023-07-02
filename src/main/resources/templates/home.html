@@ -4,17 +4,50 @@
     layout:decorate="~{layout}">
 <body>
     <div class="container" layout:fragment="corpo">
-        <h2>Página Inicial</h2>
+        <h2>Controle de Equipamentos</h2>
         <div th:replace="fragments/alerta"></div>
-        <p th:text="${msgHome}"></p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum</p>
+
+        <div class="row">
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-header">Equipamentos Recebidos</div>
+                    <div class="card-body">
+                        <h5 class="card-title">[[${recebimento}]]</h5>
+                        <a th:href="@{/operacao/listar}" class="btn btn-primary">Ir para</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-header">Ordens de Serviços Abertas</div>
+                    <div class="card-body">
+                        <h5 class="card-title">[[${os}]]</h5>
+                        <a th:href="@{/atendimento/listar}" class="btn btn-primary">Ir para</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-header">Atendimentos Cancelados</div>
+                    <div class="card-body">
+                        <h5 class="card-title">[[${cc}]]</h5>
+                        <a th:href="@{/operacao/devolver}" class="btn btn-primary">Ir para</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-header">Liberados para Devolução</div>
+                    <div class="card-body">
+                        <h5 class="card-title">[[${liberado}]]</h5>
+                        <a th:href="@{/operacao/devolver}" class="btn btn-primary">Ir para</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
-
 </html>

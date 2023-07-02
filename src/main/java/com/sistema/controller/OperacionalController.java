@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sistema.domain.Atendimento;
 import com.sistema.domain.Cancelamento;
 import com.sistema.domain.Devolucao;
 import com.sistema.domain.OrdemServico;
@@ -30,7 +29,6 @@ import com.sistema.domain.Recebimento;
 import com.sistema.domain.Usuario;
 import com.sistema.enums.Status;
 import com.sistema.repository.UsuarioRepository;
-import com.sistema.service.AtendimentoService;
 import com.sistema.service.CancelamentoService;
 import com.sistema.service.ClienteService;
 import com.sistema.service.DevolucaoService;
@@ -49,9 +47,6 @@ public class OperacionalController {
 
     @Autowired
     private OrdemServicoService ordemServicoService;
-
-    @Autowired
-    private AtendimentoService atendimentoService;
 
     @Autowired
     private DevolucaoService devolucaoService;

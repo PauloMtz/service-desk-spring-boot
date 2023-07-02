@@ -69,6 +69,13 @@ label {
     border-radius: 5px;
     padding: 5px;
 }
+.card-header {
+    text-align: center;
+    font-weight: bold;
+}
+.card-body {
+    text-align: center;
+}
 #ultima-div {
     margin-bottom: 30px;
 }

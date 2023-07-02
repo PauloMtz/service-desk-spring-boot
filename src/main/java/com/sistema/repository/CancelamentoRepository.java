@@ -12,4 +12,8 @@ public interface CancelamentoRepository extends JpaRepository<Cancelamento, Long
     @Query("SELECT cc FROM Cancelamento cc JOIN cc.recebimento r "
         + "WHERE r.status = 'CANCELA_ATENDIMENTO'")
     Page<Cancelamento> listarCancelamentos(Pageable pageable);
+
+    @Query("SELECT count(*) FROM Cancelamento cc JOIN cc.recebimento r "
+        + "WHERE r.status = 'CANCELA_ATENDIMENTO'")
+    long countById();
 }

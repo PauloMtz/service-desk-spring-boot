@@ -12,4 +12,8 @@ public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Long
     @Query("SELECT os FROM OrdemServico os JOIN os.recebimento r "
         + "WHERE r.status = 'ABRE_ORDEM_SERVICO'")
     Page<OrdemServico> listarOrdensServico(Pageable pageable);
+
+    @Query("SELECT count(*) FROM OrdemServico os JOIN os.recebimento r "
+        + "WHERE r.status = 'ABRE_ORDEM_SERVICO'")
+    long countById();
 }
