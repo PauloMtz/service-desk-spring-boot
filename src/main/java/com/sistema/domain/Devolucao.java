@@ -47,4 +47,12 @@ public class Devolucao {
     @OneToOne
     @JoinColumn(name = "usuario_id")
 	private Usuario usuario;
+
+    @OneToOne
+    @JoinColumn(name = "atendimento_id")
+	private Atendimento atendimento;
+
+    @OneToOne
+    @JoinColumn(name = "cancelamento_id")
+	private Cancelamento cancelamento;
 }

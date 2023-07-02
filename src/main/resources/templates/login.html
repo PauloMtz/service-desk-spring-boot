@@ -19,7 +19,9 @@
   <div class="container col-md-6">
     <h2>Login</h2>
     <form th:object="${usuario}" method="POST" th:action="@{/login}">
-      <div th:replace="fragments/alerta"></div>
+      <div class="alert alert-danger" th:if="${loginErro != null}">
+				<span th:text="${loginErro}"></span>
+			</div>
 
       <div class="row">
         <div class="form-group col-md-12">

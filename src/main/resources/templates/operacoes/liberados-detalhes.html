@@ -4,54 +4,62 @@
 <body>
 	<div class="container" layout:fragment="corpo">
         <h2 class="tabela col-md-6">Detalhes</h2>
-        <form th:object="${atendimento}" method="POST">
+        <form th:object="${recebimento}" method="POST">
             <div th:replace="fragments/alerta"></div>
             
             <div class="tabela col-md-6">
                 <table class="table">
                     <tr>
                         <th>Equipamento</th>
-                        <td th:text="${atendimento.recebimento.equipamento}"></td>
+                        <td th:text="${recebimento.equipamento}"></td>
                     </tr>
                     <tr>
                         <th>Marca</th>
-                        <td th:text="${atendimento.recebimento.marca}"></td>
-                    </tr>
-                    <tr>
-                        <th>Modelo</th>
-                        <td th:text="${atendimento.recebimento.modelo}"></td>
+                        <td th:text="${recebimento.marca}"></td>
                     </tr>
                     <tr>
                         <th>Número de Série</th>
-                        <td th:text="${atendimento.recebimento.numSerie}"></td>
+                        <td th:text="${recebimento.numSerie}"></td>
                     </tr>
                     <tr>
                         <th>Cliente</th>
-                        <td th:text="${atendimento.recebimento.cliente.nome}"></td>
+                        <td th:text="${recebimento.cliente.nome}"></td>
                     </tr>
                     <tr>
                         <th>Contato</th>
-                        <td th:text="${atendimento.recebimento.cliente.telefone}"></td>
+                        <td th:text="${recebimento.cliente.telefone}"></td>
                     </tr>
                     <tr>
-                        <th>Data do atendimento</th>
-                        <td th:text="${#temporals.format(atendimento.dataAtendimento, 'dd/MM/yyyy')}"></td>
-                    </tr>
-                    <tr>
-                        <th>Descrição</th>
-                        <td th:text="${atendimento.descricao}"></td>
+                        <th>Data do recebimento</th>
+                        <td th:text="${#temporals.format(recebimento.dataRecebimento, 'dd/MM/yyyy')}"></td>
                     </tr>
                     <tr>
                         <th>Status</th>
-                        <td th:text="${atendimento.recebimento.status.descricao}"></td>
+                        <td th:text="${recebimento.status.descricao}"></td>
                     </tr>
-                    <tr>
+                    <tr th:if="${recebimento.atendimento != null}">
+                        <th>Número da OS.</th>
+                        <td th:text="${recebimento.atendimento.ordemServico.numeroOs}"></td>
+                    </tr>
+                    <tr th:if="${recebimento.atendimento != null}">
+                        <th>Serviço Executado</th>
+                        <td th:text="${recebimento.atendimento.descricao}"></td>
+                    </tr>
+                    <tr th:if="${recebimento.atendimento != null}">
+                        <th>Valor</th>
+                        <td th:text="|R$ ${{recebimento.atendimento.ordemServico.valor}}"></td>
+                    </tr>
+                    <tr th:if="${recebimento.atendimento != null}">
                         <th>Observação</th>
-                        <td th:text="${atendimento.observacao}"></td>
+                        <td th:text="${recebimento.atendimento.observacao}"></td>
                     </tr>
-                    <tr>
-                        <th>Valor informado na OS</th>
-                        <td th:text="|R$ ${{atendimento.ordemServico.valor}}|"></td>
+                    <tr th:if="${recebimento.cancelamento != null}">
+                        <th>Motivo do cancelamento</th>
+                        <td th:text="${recebimento.cancelamento.motivo}"></td>
+                    </tr>
+                    <tr th:if="${recebimento.cancelamento != null}">
+                        <th>Observação</th>
+                        <td th:text="${recebimento.cancelamento.observacao}"></td>
                     </tr>
                 </table>
             </div>

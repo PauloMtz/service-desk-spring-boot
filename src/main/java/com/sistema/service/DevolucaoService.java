@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.sistema.domain.Devolucao;
+import com.sistema.domain.Recebimento;
 import com.sistema.repository.DevolucaoRepository;
 
 @Service
@@ -22,14 +23,14 @@ public class DevolucaoService {
         repository.save(devolucao);
     }
 
-    public Page<Devolucao> listarTodos(int numPage) {
+    public Page<Devolucao> listarLiberados(int numPage) {
         int size = 5;
-        Pageable pageable = PageRequest.of(numPage -1, size, Sort.by("dataAtendimento"));
-        return repository.listarDevolucoes(pageable);
+        Pageable pageable = PageRequest.of(numPage -1, size, Sort.by("id"));
+        return repository.listarLiberados(pageable);
     }
 
-    public Devolucao buscarPorId(Long id) {
-        Optional<Devolucao> registroEncontrado = repository.findById(id);
+    public Recebimento buscarPorId(Long id) {
+        Optional<Recebimento> registroEncontrado = repository.buscarPorId(id);
 
         if (registroEncontrado.isPresent()) {
             return registroEncontrado.get();

@@ -28,7 +28,8 @@
                         <td>
                             <a class="btn btn-outline-primary btn-sm"
                                 th:href="@{/atendimento/atender_os/{id}(id=${os.id})}">Atender OS.</a>
-                            <a class="btn btn-outline-danger btn-sm">Cancelar Atendimento</a>
+                            <a class="btn btn-outline-danger btn-sm"
+                                th:href="@{/operacao/cancelar/{id}(id=${os.recebimento.id})}">Cancelar Atendimento</a>
                         </td>
                     </tr>
                 </tbody>

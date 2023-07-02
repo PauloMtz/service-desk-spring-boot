@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sistema.domain.Atendimento;
+import com.sistema.domain.Cancelamento;
 import com.sistema.domain.Devolucao;
 import com.sistema.domain.OrdemServico;
 import com.sistema.domain.Recebimento;
@@ -30,6 +31,7 @@ import com.sistema.domain.Usuario;
 import com.sistema.enums.Status;
 import com.sistema.repository.UsuarioRepository;
 import com.sistema.service.AtendimentoService;
+import com.sistema.service.CancelamentoService;
 import com.sistema.service.ClienteService;
 import com.sistema.service.DevolucaoService;
 import com.sistema.service.OrdemServicoService;
@@ -53,6 +55,9 @@ public class OperacionalController {
 
     @Autowired
     private DevolucaoService devolucaoService;
+
+    @Autowired
+    private CancelamentoService cancelamentoService;
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -218,8 +223,8 @@ public class OperacionalController {
     public String listaPaginadaDevolucao(Model model,
         @PathVariable(value = "pageNumber") int currentPage) {
 
-        Page<Atendimento> page = atendimentoService.listarTodos(currentPage);
-        List<Atendimento> atendimentos = page.getContent();
+        Page<Devolucao> page = devolucaoService.listarLiberados(currentPage);
+        List<Devolucao> liberados = page.getContent();
         int totalPages = page.getTotalPages();
         long totalItems = page.getTotalElements();
 
@@ -231,21 +236,21 @@ public class OperacionalController {
         model.addAttribute("totalItems", totalItems);
         model.addAttribute("url", url);
         model.addAttribute("pag", pag);
-        model.addAttribute("atendimentos", atendimentos);
+        model.addAttribute("liberados", liberados);
 
         return "operacoes/liberados"; // template
     }
 
     @GetMapping("/liberados-detalhes/{id}")
     public String detalhesLiberados(@PathVariable Long id, Model model, RedirectAttributes attr) {
-        Atendimento registroEncontrado = atendimentoService.buscarPorId(id);
+        Recebimento registroEncontrado = recebimentoService.buscarPorId(id);
 
         if (registroEncontrado == null) {
             attr.addFlashAttribute("error", "Registro não encontrado");
             return "redirect:/operacao/devolver"; // rota
         }
 
-        model.addAttribute("atendimento", registroEncontrado);
+        model.addAttribute("recebimento", registroEncontrado);
         return "operacoes/liberados-detalhes"; // template
     }
 
@@ -282,6 +287,8 @@ public class OperacionalController {
         Usuario usuario = usuarioRepository.findByEmail(usuarioLogado.getName());
         devolucao.setUsuario(usuario);
         devolucao.setRecebimento(recebimento);
+        devolucao.setAtendimento(recebimento.getAtendimento());
+        devolucao.setCancelamento(recebimento.getCancelamento());
         devolucao.setDataDevolucao(LocalDateTime.now());
         devolucaoService.salvar(devolucao);
 
@@ -292,5 +299,51 @@ public class OperacionalController {
         // redireciona para página inicial com mensagem de sucesso
         attr.addFlashAttribute("success", "Devolução registrada com sucesso");
         return "redirect:/operacao/devolver"; // rota
+    }
+
+    // cancelar atendimento
+    @GetMapping("/cancelar/{id}")
+    public String cancelar(@PathVariable Long id, Model model, RedirectAttributes attr) {
+        Recebimento registroEncontrado = recebimentoService.buscarPorId(id);
+
+        if (registroEncontrado == null) {
+            attr.addFlashAttribute("error", "Registro não encontrado");
+            return "redirect:/operacao/listar"; // rota
+        }
+
+        Cancelamento cancelamento = new Cancelamento();
+        cancelamento.setRecebimento(registroEncontrado);
+
+        model.addAttribute("cancelamento", cancelamento);
+        return "operacoes/cancelamento"; // template
+    }
+
+    @PostMapping("/cancelar/{id}")
+    public String cancelar(@Valid Cancelamento cancelamento, BindingResult result,
+            Model model, RedirectAttributes attr, @PathVariable("id") Long id) 
+            throws IOException {
+
+        if (result.hasErrors()) {
+            return "operacoes/cancelamento"; // template
+        }
+
+        // pega id do recebimento
+        Recebimento recebimento = recebimentoService.buscarPorId(id);
+
+        // pega o usuário logado e salva os dados da OS
+        Authentication usuarioLogado = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = usuarioRepository.findByEmail(usuarioLogado.getName());
+        cancelamento.setUsuario(usuario);
+        cancelamento.setRecebimento(recebimento);
+        cancelamento.setDataCancelamento(LocalDateTime.now());
+        cancelamentoService.salvar(cancelamento);
+
+        // atualiza status do recebimento
+        recebimento.setStatus(Status.CANCELA_ATENDIMENTO);
+        recebimentoService.salvar(recebimento);
+
+        // redireciona para página inicial com mensagem de sucesso
+        attr.addFlashAttribute("success", "Cancelamento registrado com sucesso");
+        return "redirect:/"; // rota
     }
 }

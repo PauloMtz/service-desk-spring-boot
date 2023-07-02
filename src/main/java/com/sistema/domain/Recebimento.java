@@ -63,4 +63,7 @@ public class Recebimento {
 
     @OneToOne(mappedBy = "recebimento")
     private Atendimento atendimento;
+
+    @OneToOne(mappedBy = "recebimento")
+    private Cancelamento cancelamento;
 }

@@ -25,7 +25,7 @@ public class HomeController {
 
     @RequestMapping("/login-error")
 	public String loginError(Model model) {
-		model.addAttribute("loginErro", "Credenciais inválidas");
+		model.addAttribute("loginErro", "Login inválido, verifique as credenciais");
 		return "login";
 	}
 }

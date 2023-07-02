@@ -6,7 +6,7 @@
         <h2>Liberados para entrega</h2>
 
         <div class="col-md-12">
-            <table class="table table-striped" th:if="${!atendimentos.isEmpty()}">
+            <table class="table table-striped" th:if="${!liberados.isEmpty()}">
                 <div th:replace="fragments/alerta"></div>
 
                 <thead>
@@ -19,23 +19,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="atd : ${atendimentos}">
-                        <td th:text="${atd.recebimento.equipamento}"></td>
-                        <td th:text="${atd.recebimento.marca}"></td>
-                        <td th:text="${atd.recebimento.numSerie}"></td>
-                        <td th:text="${atd.recebimento.cliente.nome}"></td>
+                    <tr th:each="lib : ${liberados}">
+                        <td th:text="${lib.equipamento}"></td>
+                        <td th:text="${lib.marca}"></td>
+                        <td th:text="${lib.numSerie}"></td>
+                        <td th:text="${lib.cliente.nome}"></td>
                         <td>
                             <a class="btn btn-outline-warning btn-sm"
-                                th:href="@{/operacao/liberados-detalhes/{id}(id=${atd.id})}">Detalhes
+                                th:href="@{/operacao/liberados-detalhes/{id}(id=${lib.id})}">Detalhes
                             </a>
-                            <a th:href="@{/operacao/liberado-devolver/{id}(id=${atd.recebimento.id})}"
+                            <a th:href="@{/operacao/liberado-devolver/{id}(id=${lib.id})}"
                                 class="btn btn-outline-primary btn-sm">Devolver
                             </a>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <span th:if="${atendimentos.isEmpty()}">
+            <span th:if="${liberados.isEmpty()}">
                 <h5>Nenhum registro</h5>
             </span>
             <div th:replace="fragments/paginacao"></div>
